@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link data-require="bootstrap-css@*" data-semver="3.0.3" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body ng-app="gridApp">
+  <div class="container">
+    <h1>Editable Grid in AngularJS</h1>
+    <p class="alert alert-info">Right Click on the rows to access more options
+    </p>
+    <p>Yet To Implement:
+      <br/>1) Add / Remove Columns
+    </p>
+    <div ng-controller="GridCtrl">
+      <table class="spreadsheet table table-condensed table-striped table-bordered">
+        <thead>
+          <tr>
+           
+            <th>Title</th>
+            <th>Autur</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="book in books" ng-right-click="openContextMenu($event, $index)" ng-click="rtcl($event, $index)">
+            <td>
+              <span>
+                  <input type="text" class="editable-cell" ng-model="book.title" />
+                </span>
+            </td>
+            <td>
+              <span>
+                  <input type="text" class="editable-cell" ng-model="book.autur" />
+                </span>
+            </td>
+            <td>
+              <span>
+                  <input type="text" class="editable-cell" ng-model="book.Date" />
+                </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="context-menu" ng-show="isContextMenuVisible" ng-style="contextMenuStyle">
+        <ul class="dropdown-menu">
+          <li>
+            <a tabindex="-1" ng-click="addRow()">New Row</a>
+          </li>
+          <li>
+            <a tabindex="-1" ng-click="removeRow()">Remove Row</a>
+          </li>
+          <li>
+            <a tabindex="-1" ng-click="addColumn()">Add Column</a>
+          </li>
+          <li>
+            <a tabindex="-1" ng-click="removeColumn()">Remove Column</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script data-require="angular.js@*" data-semver="1.2.11" src="http://code.angularjs.org/1.2.11/angular.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
